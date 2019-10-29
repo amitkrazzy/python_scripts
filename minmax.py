@@ -13,4 +13,5 @@ def minmax(digits):
 
 digits = input('Enter integers seperated by space: ')
 digits = [int(i) for i in digits.split()] #conveting string into list of integers
+
 print(minmax(digits))
