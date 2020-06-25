@@ -1,0 +1,32 @@
+import pandas as pd
+
+d = { 'time': ['00:00','00:30','01:00','01:30','02:00'], 'count': [0,0,0,0,0]}
+print(d)
+df2 = pd.DataFrame(data=d)
+
+d = {'date': ['2020-06-01', '2020-06-01', '2020-06-01','2020-06-01','2020-06-02', '2020-06-02', '2020-06-02'], 'time_data': ['00:00','00:30','01:30','02:00','00:30','01:30','02:00'], 'count_data': [3, 4, 9,12,2,4,3]}
+df = pd.DataFrame(data=d)
+
+print(df)
+print(df2)
+
+#df3 = df.set_index('col2').join(df2.set_index('col2'),how='right')
+
+val=df['date'].unique()
+dict = {'date' : val}
+print(dict)
+df3 = pd.DataFrame(data=dict)
+print(df3)
+#df3=pd.DataFrame({'date' : [val]})
+#print(type(val))
+df4= df2.assign(sn=1).merge(df3.assign(sn=1)).drop('sn', 1)
+print(df4)
+print(df4.info())
+print(df.info())
+#df5= df4.set_index('date').join(df.set_index('date'))
+df5 = pd.merge(df, df4,  how='right', left_on=['date','time_data'], right_on = ['date','time'])
+print(df5)
+
+
+
+#print(df5)
